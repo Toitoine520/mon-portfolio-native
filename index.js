@@ -7,7 +7,43 @@ let texteAEcrire = zoneDeTexte;
 autoWrite(texteAEcrire, zoneDeTexte.getAttribute("data-vitesse-ecriture"));
 autoWrite(presentation, 8);
 
+/**
+ * Menu
+ */
+let hamburger = document.querySelector(".hamburger");
+let menu = document.querySelector(".menu");
+let isCacher = true;
+
+let liensMenu = document.querySelectorAll(".lien-menu");
+let clickEvt;
+hamburger.addEventListener("click", () => {
+  if (!isCacher) {
+    // hide menu
+    menu.classList.add("cacher");
+    isCacher = true;
+    removeEventListener("click", clickEvt);
+  } else {
+    // show menu
+    createLinkListener(liensMenu);
+    menu.classList.remove("cacher");
+    isCacher = false;
+  }
+});
+
+
+
+
 // });
+
+function createLinkListener(linksTab) {
+  for (let i = 0; i < linksTab.length; i++){
+    clickEvt = linksTab[i].addEventListener("click", () => {
+      menu.classList.add("cacher");
+      isCacher = false;
+      removeEventListener("click", clickEvt);
+    });
+  }
+}
 
 /**
  * Texte auto écrit
