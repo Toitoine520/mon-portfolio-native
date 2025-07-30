@@ -7,9 +7,13 @@
     <title>Antoine LE NAGARD</title>
   </head>
   <body>
-    <header></header>
+    <header>
+      <button class="bouton primaire hamburger"><span class="picto-burger">|||</span></button>
+    </header>
+      <div class="menu"></div>
     <main>
       <h1>Hello World</h1>
+      
       <section class="presentation">
         <h2>Présentation</h2>
         <p class="contenu">
@@ -22,10 +26,11 @@
         <a href="#realisations" class="bouton primaire"
           >Voir les réalisations</a
         >
-        <a href="#realisations" class="bouton primaire">Contact</a>
+        <a href="#contact" class="bouton primaire">Contact</a>
       </section>
       <section class="etudes">
-        <div class="texte-auto-ecrit" vitesse-ecriture="20">
+        <h2>Études</h2>
+        <div class="texte-auto-ecrit" data-vitesse-ecriture="30">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In risus
           odio, iaculis at nibh eget, porta pretium tellus. Praesent cursus
           ultricies magna quis gravida. Nulla consectetur, quam a ultrices
@@ -36,10 +41,22 @@
           placerat aliquet.
         </div>
       </section>
-      <section class="expériences"></section>
-      <section class="realications"></section>
+      <section class="expériences">
+        <h2>Mes Expériences</h2>
+      </section>
+      <section class="realications">
+        <h2>Mes réalisations</h2>
+      </section>
+      <section class="tests">
+        <h2>Tests</h2>
+        <div class="bloc-miel"></div>
+      </section>
     </main>
-    <footer></footer>
+    <footer>
+      <a href="#">Github</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Assessfirst</a>
+    </footer>
   </body>
   <script src="index.js"></script>
 </html>
