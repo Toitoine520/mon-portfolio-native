@@ -12,10 +12,13 @@ autoWrite(presentation, 8);
  */
 let hamburger = document.querySelector(".hamburger");
 let menu = document.querySelector(".menu");
+let linkContainer = menu.querySelector(".link-container");
+let tabTitres = document.querySelectorAll("h2");
 let isCacher = true;
 
 let liensMenu = document.querySelectorAll(".lien-menu");
 let clickEvt;
+
 hamburger.addEventListener("click", () => {
   if (!isCacher) {
     // hide menu
@@ -30,16 +33,42 @@ hamburger.addEventListener("click", () => {
   }
 });
 
-
-
+assignerLiensMenu(tabTitres, linkContainer);
 
 // });
 
+function assignerLiensMenu(titres, menu) {
+  console.log(titres, menu);
+  for (let i = 0; i < titres.length; i++) {
+    let lien = document.createElement("a");
+    let contenu = titres[i].textContent;
+    let id = titres[i].getAttribute("id");
+    let noLinkTo = false;
+    if (id === null) {
+      throw new Error(
+        "l'élément cible n'a pas d'id -> " +
+          titres[i].tagName +
+          " " +
+          titres[i].innerText
+      );
+    } else if (id == "noLink") {
+      noLinkTo = true;
+    }
+    lien.innerText = contenu;
+    lien.classList.add("lien-menu");
+    if (!noLinkTo) {
+      lien.setAttribute("href", "#" + id);
+      menu.appendChild(lien);
+    }
+  }
+  liensMenu = document.querySelectorAll(".lien-menu");
+}
+
 function createLinkListener(linksTab) {
-  for (let i = 0; i < linksTab.length; i++){
+  for (let i = 0; i < linksTab.length; i++) {
     clickEvt = linksTab[i].addEventListener("click", () => {
       menu.classList.add("cacher");
-      isCacher = false;
+      isCacher = true;
       removeEventListener("click", clickEvt);
     });
   }

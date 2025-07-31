@@ -11,7 +11,7 @@
     var(--blue) 0%,
     var(--magenta) 50%,
     var(--orange) 110%
-  );
+    );
 }
 
 html{
@@ -47,6 +47,7 @@ h1 {
 }
 h2 {
   text-align: center;
+    scroll-margin-top: 100px;
 }
 
 a{
