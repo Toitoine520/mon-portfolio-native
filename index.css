@@ -57,6 +57,50 @@ a:hover{
   text-decoration: none;
 }
 
+.gras{
+  font-weight: 700;
+}
+
+
+/* COPMPOSANTS */
+
+.bouton {
+  border: solid 2px var(--dark-grey);
+  padding: 1rem;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+.bouton.primaire {
+  display: flex;
+  isolation: isolate;
+  min-width: 52px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: var(--degrade-bmo);
+  background-size: 100% 100%;
+  transition-duration: 0.2s;
+}
+.bouton.primaire:before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  background-color: var(--dark-grey);
+  transition-duration: 0.2s;
+}
+
+.bouton.primaire:hover:before {
+  opacity: 0;
+}
+
+/**
+* FIN COMPOSANTS
+* */
+
 /**
 *MENU
 * */
@@ -138,6 +182,10 @@ header {
   display: none;
 }
 
+/**
+* FIN MENU
+* */
+
 
 /**
 * CONTENU SITE
@@ -145,22 +193,23 @@ header {
 
 section {
   margin: 50px 20px;
-  max-width: 800px;
 }
 
 .presentation {
   text-align: center;
+}
+.presentation .contenu{
+  max-width: 800px;
+}
+
+.etudes .contenu {
+  max-width: 800px;
 }
 
 section .contenu {
   margin-left: 20px;
 }
 
-section.cta {
-  display: inline-grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
 
 footer {
   display: flex;
@@ -168,7 +217,7 @@ footer {
   gap: 20px;
   padding: 20px 0;
   width: 100%;
-
+  
   background-color: rgb(12, 12, 12);
 }
 
@@ -176,49 +225,92 @@ footer > a {
   color: white;
 }
 
-/* COPMPOSANTS */
-
-.bouton {
-  border: solid 2px var(--dark-grey);
-  padding: 1rem;
-  text-decoration: none;
-  color: white;
-  cursor: pointer;
+.cta {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
-.bouton.primaire {
-  display: flex;
-  isolation: isolate;
-  justify-content: center;
-  align-items: center;
+/**
+* EXPÉRIENCES
+* */
+
+.experiences{
+  max-width: 1500px;
+}
+
+.experiences-container{
+  display: inline-grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.carte-experience, .carte-experience-popup{
   position: relative;
-  background: var(--degrade-bmo);
-  background-size: 100% 100%;
-  transition-duration: 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  border-radius: 10px;
+  background: var(--black);
+  
 }
-.bouton.primaire:before {
-  content: "";
-  z-index: -1;
+.carte-experience > .hover-container{
+  display: none;
+}
+
+.carte-experience-popup{
   position: absolute;
-  width: calc(100% - 4px);
-  height: calc(100% - 4px);
-  background-color: var(--dark-grey);
-  transition-duration: 0.2s;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+
+  transform-origin: top;
+  animation: expPopup 0.3s ease-out forwards;
+  z-index: 5;
 }
 
-.bouton.primaire:hover:before {
-  opacity: 0;
+.carte-experience-popup > .hover-container{
+  border-top: solid white 1px;
+  padding-top: 10px;
+  line-height: 1.3rem;
+}
+.carte-experience-popup > .hover-container > p{
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+.carte-experience-popup > .hover-container .gras{
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.carte-experience-popup.cacher{ /*Surcharger la priorité de display : flex plus haut*/
+  display: none;
 }
 
-@keyframes movingBG {
-  0%,
-  100% {
-    background-position: 0 0;
+@keyframes expPopup {
+  0% {
+    scale: 1;
   }
-  50% {
-    background-position: 100% 0;
+  100%{
+    scale: 1.1;
   }
 }
+/*Bouton voir plus des cartes*/
+.voir-plus{
+  border-radius: 50%;
+  rotate: 180deg;
+}
+.voir-plus:before{
+  border-radius: 50%;
+  background-color: var(--black);
+}
+
+/**
+* FIN EXPÉRIENCES
+* */
+
 
 /**
 * TESTS
@@ -234,8 +326,8 @@ footer > a {
 }
 
 .bloc-miel:before{
-  content: "";
   --color: hsl(39, 54%, 56%); 
+  content: "";
   position: absolute;
   top: 10%;
   left: 10%;
@@ -269,3 +361,7 @@ footer > a {
   -10px -10px 15px -15px var(--shadow) inset
   ;
 }
+
+/** 
+* FIN TESTS
+* */

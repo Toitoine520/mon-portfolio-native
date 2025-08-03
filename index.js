@@ -35,10 +35,71 @@ hamburger.addEventListener("click", () => {
 
 assignerLiensMenu(tabTitres, linkContainer);
 
+// EXPERIENCES
+
+creerPopupsExperiences();
+
 // });
 
+function creerPopupsExperiences() {
+  let cartesExperience = document.querySelectorAll(".carte-experience");
+  
+  for (let i = 0; i < cartesExperience.length; i++) {
+    let carteExperienceHover = document.createElement("div");
+    // template créé dans le html à la fin de la section EXPERIENCES
+    let boutonVoirPlus = document.createElement("button");
+    boutonVoirPlus.classList.add("voir-plus", "bouton", "primaire");
+    boutonVoirPlus.innerText = "^";
+    //Remplissage du contenu
+    carteExperienceHover.innerHTML = cartesExperience[i].innerHTML;
+    carteExperienceHover.classList.add("carte-experience-popup", "cacher");
+    cartesExperience[i].appendChild(carteExperienceHover);
+
+    carteExperienceHover.append(boutonVoirPlus);
+    
+    boutonVoirPlus.onclick = () => {
+      console.log("click");
+      // faire apparaître la popup indiquant les détails de mes expériences
+    };
+    
+    let eventLeaveCard;
+
+    //Apparition
+    cartesExperience[i].addEventListener("mouseenter", () => {
+      carteExperienceHover.classList.remove("cacher");
+
+      //Disparition lorsqu'on leave le hover mais aussi quand on leave la carte sans survoler le hover et sans multiplier les listener
+      eventLeaveCard = cartesExperience[i].addEventListener(
+        "mouseleave",
+        (e) => {
+          carteExperienceHover.classList.add("cacher");
+          removeEventListener("mouseleave", eventLeaveCard);
+        }
+      );
+    });
+
+    carteExperienceHover.addEventListener("mouseenter", (e) => {
+      removeEventListener("mouseleave", eventLeaveCard);
+      let eventListenerLeave = carteExperienceHover.addEventListener(
+        "mouseleave",
+        (e) => {
+          e.target.classList.add("cacher");
+          removeEventListener("mouseleave", eventListenerLeave);
+        }
+      );
+    });
+  }
+
+}
+
+/** 
+ * Permet de créer une popup activée au hover des expériences
+ * */ 
+function assignerContenuExperiencesPopups() {
+  
+}
+
 function assignerLiensMenu(titres, menu) {
-  console.log(titres, menu);
   for (let i = 0; i < titres.length; i++) {
     let lien = document.createElement("a");
     let contenu = titres[i].textContent;
